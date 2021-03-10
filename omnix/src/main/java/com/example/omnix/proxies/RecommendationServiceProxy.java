@@ -19,6 +19,6 @@ public interface RecommendationServiceProxy {
     @PostMapping("/newEventStarted")
     RecommendationSuggestions getEventResponse(InvestigationData investigationData);
 
-    @GetMapping("/clickOnCoffeeShop")
-    Recommendation handleNewUserClick();
+    @GetMapping("/clickOnLocation")
+    RecommendationSuggestions handleNewUserClick();
 }

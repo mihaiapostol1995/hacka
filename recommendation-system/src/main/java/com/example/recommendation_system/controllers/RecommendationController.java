@@ -29,8 +29,9 @@ public class RecommendationController {
     public RecommendationSuggestions handleNewReportFromOmnix(@RequestBody InvestigationData investigationData) throws InterruptedException {
         clearRecommendationList();
 
-        System.out.println("Recommendation System received report data: " + investigationData.getData());
-        System.out.println("Analyzing report data...");
+        Thread.sleep(2500);
+        System.out.println("Recommendation System received report data.");
+        System.out.println("Analyzing report data and calculate suggestions...");
         Thread.sleep(2500);
 
         RecommendationSuggestions recommendationSuggestions = new RecommendationSuggestions();
@@ -47,8 +48,9 @@ public class RecommendationController {
     public RecommendationSuggestions handleNewEventInvestigationFromOmnix(@RequestBody InvestigationData investigationData) throws InterruptedException {
         clearRecommendationList();
 
-        System.out.println("Recommendation system received event data: " + investigationData);
-        System.out.println("Analyzing report data...");
+        Thread.sleep(2500);
+        System.out.println("Recommendation system received event of type accident.");
+        System.out.println("Analyzing event and calculate suggestions...");
         Thread.sleep(2500);
 
         RecommendationSuggestions recommendationSuggestions = new RecommendationSuggestions();
@@ -60,10 +62,11 @@ public class RecommendationController {
         return recommendationSuggestions;
     }
 
-    @GetMapping("/clickOnCoffeeShop")
+    @GetMapping("/clickOnLocation")
     //Analyst click on the coffee shop
     public Recommendation handleNewUserClick() throws InterruptedException {
-        System.out.println("Analyzing report data...");
+        Thread.sleep(2500);
+        System.out.println("Analyzing location(Coffee Shop)  data...");
         Thread.sleep(2500);
 
         Recommendation recommendationSuggestion = new Recommendation();

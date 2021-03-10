@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import java.util.Arrays;
 
 @RestController
 public class AnalyticsController {
@@ -23,28 +23,29 @@ public class AnalyticsController {
     }
 
     @PostMapping("/getReportResponse")
-    public List<String> getReportResponse(@RequestBody InvestigationData investigation) throws InterruptedException {
-        System.out.println("Report data received by OMNIX: " + investigation.getData());
+    public String getReportResponse(@RequestBody InvestigationData investigation) {
+        System.out.println("Accident Report received by OMNIX.\nwaiting for suggestions from recommendation system.");
 
         RecommendationSuggestions recommendationSuggestions =
                 recommendationServiceProxy.getReportResponse(investigation);
         System.out.println(recommendationSuggestions);
-        return recommendationSuggestions.getSuggestions();
+        return Arrays.toString(recommendationSuggestions.getSuggestions().toArray());
     }
 
     @PostMapping("/getEventSuggestions")
-    public List<String> getEventSuggestions(@RequestBody InvestigationData investigation){
-        System.out.println("Report data received by OMNIX: " + investigation.getData());
+    public String getEventSuggestions(@RequestBody InvestigationData investigation){
+        System.out.println("Accident data received by OMNIX.\nwaiting for suggestions from recommendation system.");
 
         RecommendationSuggestions recommendationSuggestions =
                 recommendationServiceProxy.getEventResponse(investigation);
         System.out.println(recommendationSuggestions);
-        return recommendationSuggestions.getSuggestions();
+        return Arrays.toString(recommendationSuggestions.getSuggestions().toArray());
     }
 
     @GetMapping("/clickOnLocation")
     public String getLocationResponse(){
-        Recommendation recommendation = recommendationServiceProxy.handleNewUserClick();
-        return recommendation.getText();
+        RecommendationSuggestions recommendation = recommendationServiceProxy.handleNewUserClick();
+        System.out.println(recommendation);
+        return Arrays.toString(recommendation.getSuggestions().toArray());
     }
 }
