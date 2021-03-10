@@ -34,6 +34,7 @@ public class RecommendationController {
         System.out.println("Analyzing report data and calculate suggestions...");
         Thread.sleep(2500);
 
+        System.out.println("Recommendation system finished analyzing! Great success");
         RecommendationSuggestions recommendationSuggestions = new RecommendationSuggestions();
         recommendationSuggestions.setSuggestions(handler
                 .getRecommendationsForNewReport(recommendationOptions)
