@@ -26,9 +26,13 @@ public class RecommendationController {
 
     @PostMapping("/newReport")
     //Analyst open new report in Omnix, invoking call from Omnix with indication of the opened report
-    public RecommendationSuggestions handleNewReportFromOmnix(@RequestBody InvestigationData investigationData){
+    public RecommendationSuggestions handleNewReportFromOmnix(@RequestBody InvestigationData investigationData) throws InterruptedException {
         clearRecommendationList();
+
         System.out.println("Recommendation System received report data: " + investigationData.getData());
+        System.out.println("Analyzing report data...");
+        Thread.sleep(2500);
+
         RecommendationSuggestions recommendationSuggestions = new RecommendationSuggestions();
         recommendationSuggestions.setSuggestions(handler
                 .getRecommendationsForNewReport(recommendationOptions)
@@ -42,8 +46,8 @@ public class RecommendationController {
     //Analyst create new investigation - Type Event (data gathered from report), all data being filled automatically into the investigations
     public RecommendationSuggestions handleNewEventInvestigationFromOmnix(@RequestBody InvestigationData investigationData) throws InterruptedException {
         clearRecommendationList();
-        System.out.println("Recommendation system received event data: " + investigationData);
 
+        System.out.println("Recommendation system received event data: " + investigationData);
         System.out.println("Analyzing report data...");
         Thread.sleep(2500);
 

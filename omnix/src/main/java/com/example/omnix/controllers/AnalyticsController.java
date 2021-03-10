@@ -34,6 +34,8 @@ public class AnalyticsController {
 
     @PostMapping("/getEventSuggestions")
     public List<String> getEventSuggestions(@RequestBody InvestigationData investigation){
+        System.out.println("Report data received by OMNIX: " + investigation.getData());
+
         RecommendationSuggestions recommendationSuggestions =
                 recommendationServiceProxy.getEventResponse(investigation);
         System.out.println(recommendationSuggestions);
