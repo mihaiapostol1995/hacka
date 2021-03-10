@@ -1,10 +1,11 @@
 package com.example.recommendation_system.controllers;
 
+import com.example.recommendation_system.MessagePool;
 import com.example.recommendation_system.dtos.InvestigationData;
 import com.example.recommendation_system.responses.RecommendationSuggestions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import com.example.recommendation_system.entities.Recommendation;
+import com.example.recommendation_system.dtos.Recommendation;
 import com.example.recommendation_system.handlers.RecommendationsHandler;
 
 import java.util.ArrayList;
@@ -39,9 +40,13 @@ public class RecommendationController {
 
     @PostMapping("/newEventStarted")
     //Analyst create new investigation - Type Event (data gathered from report), all data being filled automatically into the investigations
-    public RecommendationSuggestions handleNewEventInvestigationFromOmnix(@RequestBody InvestigationData investigationData){
+    public RecommendationSuggestions handleNewEventInvestigationFromOmnix(@RequestBody InvestigationData investigationData) throws InterruptedException {
         clearRecommendationList();
         System.out.println("Recommendation system received event data: " + investigationData);
+
+        System.out.println("Analyzing report data...");
+        Thread.sleep(2500);
+
         RecommendationSuggestions recommendationSuggestions = new RecommendationSuggestions();
         recommendationSuggestions.setSuggestions(handler
                 .getRecommendationsForNewEvent(recommendationOptions)
@@ -49,6 +54,17 @@ public class RecommendationController {
                 .map(Recommendation::getText)
                 .collect(Collectors.toList()));
         return recommendationSuggestions;
+    }
+
+    @GetMapping("/clickOnCoffeeShop")
+    //Analyst click on the coffee shop
+    public Recommendation handleNewUserClick() throws InterruptedException {
+        System.out.println("Analyzing report data...");
+        Thread.sleep(2500);
+
+        Recommendation recommendationSuggestion = new Recommendation();
+        recommendationSuggestion.setText(MessagePool.COLLECT_CREDIT_CARD_TRANSACTIONS);
+        return recommendationSuggestion;
     }
 
     private void clearRecommendationList(){

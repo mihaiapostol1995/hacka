@@ -2,7 +2,7 @@ package com.example.recommendation_system.handlers;
 
 import org.springframework.stereotype.Service;
 import com.example.recommendation_system.MessagePool;
-import com.example.recommendation_system.entities.Recommendation;
+import com.example.recommendation_system.dtos.Recommendation;
 
 import java.util.Arrays;
 import java.util.List;

@@ -1,6 +1,7 @@
 package com.example.omnix.controllers;
 
 import com.example.omnix.dtos.InvestigationData;
+import com.example.omnix.dtos.Recommendation;
 import com.example.omnix.proxies.RecommendationServiceProxy;
 import com.example.omnix.responses.RecommendationSuggestions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +23,9 @@ public class AnalyticsController {
     }
 
     @PostMapping("/getReportResponse")
-    public List<String> getReportResponse(@RequestBody InvestigationData investigation){
+    public List<String> getReportResponse(@RequestBody InvestigationData investigation) throws InterruptedException {
         System.out.println("Report data received by OMNIX: " + investigation.getData());
+
         RecommendationSuggestions recommendationSuggestions =
                 recommendationServiceProxy.getReportResponse(investigation);
         System.out.println(recommendationSuggestions);
@@ -32,9 +34,15 @@ public class AnalyticsController {
 
     @PostMapping("/getEventSuggestions")
     public List<String> getEventSuggestions(@RequestBody InvestigationData investigation){
-        List<String> eventSuggestions =
+        RecommendationSuggestions recommendationSuggestions =
                 recommendationServiceProxy.getEventResponse(investigation);
-        System.out.println(eventSuggestions);
-        return eventSuggestions;
+        System.out.println(recommendationSuggestions);
+        return recommendationSuggestions.getSuggestions();
+    }
+
+    @GetMapping("/clickOnLocation")
+    public String getLocationResponse(){
+        Recommendation recommendation = recommendationServiceProxy.handleNewUserClick();
+        return recommendation.getText();
     }
 }

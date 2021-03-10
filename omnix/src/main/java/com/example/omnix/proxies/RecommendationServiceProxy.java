@@ -1,6 +1,7 @@
 package com.example.omnix.proxies;
 
 
+import com.example.omnix.dtos.Recommendation;
 import com.example.omnix.responses.RecommendationSuggestions;
 import org.springframework.cloud.openfeign.FeignClient;
 import com.example.omnix.dtos.InvestigationData;
@@ -16,5 +17,8 @@ public interface RecommendationServiceProxy {
     RecommendationSuggestions getReportResponse(InvestigationData investigationData);
 
     @PostMapping("/newEventStarted")
-    List<String> getEventResponse(InvestigationData investigationData);
+    RecommendationSuggestions getEventResponse(InvestigationData investigationData);
+
+    @GetMapping("/clickOnCoffeeShop")
+    Recommendation handleNewUserClick();
 }

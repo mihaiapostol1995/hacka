@@ -15,7 +15,8 @@ public class MessagePool {
     public static String COLLECT_TRAFFIC_REPORTS = "Collect car traffic reports (federated search)";
     public static String DISPLAY_LOCATION_ON_MAP = "Display detected location in a map";
 
-
+    //click on coffee shop
+    public static String COLLECT_CREDIT_CARD_TRANSACTIONS = "Collect Credit Card transaction from \"Gold Coffee\" for the investigation period of time";
 
 
 
