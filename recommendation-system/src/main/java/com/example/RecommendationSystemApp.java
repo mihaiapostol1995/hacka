@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 public class RecommendationSystemApp {
 
 	public static void main(String[] args) {
+		System.out.println("Starting Recommendation System app");
 		SpringApplication.run(RecommendationSystemApp.class, args);
 	}
 

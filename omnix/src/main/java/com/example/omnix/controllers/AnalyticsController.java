@@ -44,8 +44,8 @@ public class AnalyticsController {
 
     @GetMapping("/clickOnLocation")
     public String getLocationResponse(){
-        RecommendationSuggestions recommendation = recommendationServiceProxy.handleNewUserClick();
-        System.out.println(recommendation);
-        return Arrays.toString(recommendation.getSuggestions().toArray());
+        Recommendation recommendation = recommendationServiceProxy.handleNewUserClick();
+        System.out.println(recommendation.getText());
+        return recommendation.getText();
     }
 }

@@ -11,6 +11,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 public class OmnixMockApp {
 
 	public static void main(String[] args) {
+		System.out.println("Starting OMNIX app");
 		SpringApplication.run(OmnixMockApp.class, args);
 	}
 

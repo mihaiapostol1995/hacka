@@ -53,6 +53,7 @@ public class RecommendationController {
         System.out.println("Analyzing event and calculate suggestions...");
         Thread.sleep(2500);
 
+        System.out.println("Recommendation system finished analyzing! Great success");
         RecommendationSuggestions recommendationSuggestions = new RecommendationSuggestions();
         recommendationSuggestions.setSuggestions(handler
                 .getRecommendationsForNewEvent(recommendationOptions)
@@ -69,6 +70,7 @@ public class RecommendationController {
         System.out.println("Analyzing location(Coffee Shop)  data...");
         Thread.sleep(2500);
 
+        System.out.println("Recommendation system finished analyzing! Great success");
         Recommendation recommendationSuggestion = new Recommendation();
         recommendationSuggestion.setText(MessagePool.COLLECT_CREDIT_CARD_TRANSACTIONS);
         return recommendationSuggestion;
